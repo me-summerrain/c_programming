@@ -2,7 +2,9 @@
 #include <stdlib.h>
 
 /**
- * N: The returned array must be malloced, assume caller calls free().
+
+ * The returned array must be malloced, assume caller calls free().
+
  */
 int *twoSum(int *nums, int numsSize, int target, int *returnSize)
 {
