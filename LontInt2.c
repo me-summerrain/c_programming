@@ -3,8 +3,7 @@
 
 int Length(long long n);
 
-int main()
-{
+int main() {
     long long n;
     long long m;
     printf("Iki sany uly san girizin(2^32+):\n");
@@ -19,8 +18,7 @@ int main()
     int b_index = SIZE;
 
     // n sany massiwa yerleshdiryar
-    for (i = SIZE - 1; i >= 0; i--)
-    {
+    for (i = SIZE - 1; i >= 0; i--) {
         a[i] = n % 10;
         n = n / 10;
         a_index -= 1;
@@ -33,8 +31,7 @@ int main()
         len = Length(m);
 
     // m sany massiwa yerleshdiryar
-    for (i = SIZE - 1; i >= 0; i--)
-    {
+    for (i = SIZE - 1; i >= 0; i--) {
         b[i] = m % 10;
         m = m / 10;
         b_index -= 1;
@@ -42,18 +39,15 @@ int main()
             break;
     }
 
-    for (i = SIZE - 1; i >= SIZE - len; i--)
-    {
+    for (i = SIZE - 1; i >= SIZE - len; i--) {
         c[i] = a[i] + b[i];
-        if (c[i] > 9)
-        {
+        if (c[i] > 9) {
             int t = c[i];
             c[i] = t % 10;
             a[i - 1] += t / 10;
         }
     }
-    for (i = SIZE - len; i < SIZE; i++)
-    {
+    for (i = SIZE - len; i < SIZE; i++) {
         printf("%d", c[i]);
     }
 
@@ -71,11 +65,9 @@ int main()
     return 0;
 }
 
-int Length(long long n)
-{
+int Length(long long n) {
     int len = 0;
-    while (n > 0)
-    {
+    while (n > 0) {
         int i = n % 10;
         n = n / 10;
         len++;

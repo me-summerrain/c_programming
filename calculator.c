@@ -1,14 +1,13 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define MAXLEN 100
 #define TRUE 1
 #define FALSE 0
 
-typedef struct NODE
-{
+typedef struct NODE {
     struct NODE *father;
     struct NODE *left;
     struct NODE *right;
@@ -16,8 +15,7 @@ typedef struct NODE
     int isLeaf;
 } Node;
 
-void newNode(Node *root, Node *father)
-{
+void newNode(Node *root, Node *father) {
     root->father = father;
     root->left = NULL;
     root->right = NULL;
@@ -28,29 +26,22 @@ void newNode(Node *root, Node *father)
 
 
 // clear the string
-void strClear(char *str, int n)
-{
-    for (int i = 0; i < n; i++)
-    {
+void strClear(char *str, int n) {
+    for (int i = 0; i < n; i++) {
         str[i] = '\0';
     }
 }
 
-void initCalcTree(Node *root, int order)
-{
-    for (int i = 0; i < MAXLEN; i++)
-    {
-        if (root->value[i] == '(')
-        {
+void initCalcTree(Node *root, int order) {
+    for (int i = 0; i < MAXLEN; i++) {
+        if (root->value[i] == '(') {
             // Find the matching closing parenthesis
             int openParens = 0;
             int closePos = -1;
-            for (int j = i + 1; j < MAXLEN && closePos == -1; j++)
-            {
+            for (int j = i + 1; j < MAXLEN && closePos == -1; j++) {
                 if (root->value[j] == '(')
                     openParens++;
-                else if (root->value[j] == ')')
-                {
+                else if (root->value[j] == ')') {
                     if (openParens == 0)
                         closePos = j;
                     else
@@ -85,12 +76,10 @@ void initCalcTree(Node *root, int order)
     }
 }
 
-int calcNode(Node *root)
-{
+int calcNode(Node *root) {
     if (root->isLeaf == TRUE)
         return atof(root->value);
-    else
-    {
+    else {
         double a = calcNode(root->left);
         double b = calcNode(root->right);
         if (strcmp(root->left->value, "abs") == 0)
@@ -104,14 +93,12 @@ int calcNode(Node *root)
     }
 }
 
-int main()
-{
+int main() {
     Node *root = (Node *)malloc(sizeof(Node));
     char str[MAXLEN];
-    while (1)
-    {
+    while (1) {
         fgets(str, MAXLEN, stdin);
-        str[strlen(str) - 1] = '\0'; // Remove the trailing newline
+        str[strlen(str) - 1] = '\0';  // Remove the trailing newline
         strcpy(root->value, str);
         initCalcTree(root, '\0');
         printf("%s=%f\n", str, calcNode(root));
