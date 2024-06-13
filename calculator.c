@@ -26,7 +26,8 @@ void newNode(Node *root, Node *father)
         father->isLeaf = FALSE;
 }
 
-// adding some comments
+
+// clear the string
 void strClear(char *str, int n)
 {
     for (int i = 0; i < n; i++)
